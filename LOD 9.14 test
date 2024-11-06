@@ -2,3 +2,6 @@ vserver rename -vserver svm1_cluster1 -newname svm1
 vserver rename -vserver svm2_cluster1 -newname svm2
 aggregate rename -aggregate cluster1_01_SSD_1 -newname n1_aggr1
 aggregate rename -aggregate cluster1_02_SSD_1 -newname n2_aggr1
+
+
+for i in {1..1000000}; do dd if=/dev/urandom of=file$i bs=1k count=1; done
