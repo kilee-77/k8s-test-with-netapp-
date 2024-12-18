@@ -1,0 +1,15 @@
+#with k8s 1.31 version
+wget https://github.com/NetApp/trident/releases/download/v24.10.0/trident-installer-24.10.0.tar.gz
+tar -xf trident-installer-24.10.0.tar.gz
+cd trident-installer
+kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
+# k apply -f deploy/namespace.yaml #해당 명령어 검증필요
+cp deploy/kustomization_post_1_25.yaml deploy/kustomization.yaml
+kubectl kustomize deploy/ > deploy/bundle_post_1_25.yaml
+kubectl create -f deploy/bundle_post_1_25.yaml
+kubectl create -f deploy/crds/tridentorchestrator_cr.yaml
+
+kubectl describe torc trident #trident check command
+kubectl get pods -n trident #trident check command
+./tridentctl -n trident version #trident version check
+yum install -y ontap-nas ontap-nas-economy ontap-nas-flexgroup azure-netapp-files gcp-cvs
