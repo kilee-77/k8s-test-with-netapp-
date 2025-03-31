@@ -15,3 +15,5 @@ nmcli connection modify ens33 ipv4.gateway 192.168.0.1
 nmcli connection modify ens33 ipv4.dns 8.8.8.8
 nmcli connection modify ens33 ipv4.method manual
 nmcli connection down ens33 && nmcli connection up ens33
+
+#리눅스 스크립트의 모든 목록은 hostname 을 가장 늦게 변경해야 함. 쉘이 먹질 않음.
