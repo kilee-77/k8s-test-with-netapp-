@@ -1,0 +1,14 @@
+#hostname 변경
+hostnamectl set-hostname k8s-node1 && exec bash
+
+#Hosts Add
+cat <<EOF | sudo tee -a /etc/hosts
+192.168.0.200 master
+192.168.0.201 node1
+192.168.0.202 node2
+192.168.0.203 node3
+EOF
+
+#IP Change
+nmcli connection modify ens33 ipv4.addresses 192.168.0.201/24
+nmcli connection down ens33 && nmcli connection up ens33
