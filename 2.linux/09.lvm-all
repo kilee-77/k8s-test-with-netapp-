@@ -1,0 +1,17 @@
+#디스크 포멧
+fdisk /dev/sdb
+n > p > enter > enter > enter > p > t > 8e >p > w
+lsblk
+
+#LVM 구성
+pvcreate /dev/sdb1
+vgcreate vg_k8s /dev/sdb1
+lvcreate -L 290G -n k8s vg_k8s
+
+#파일시스템 구성
+mkfs.xfs /dev/vg_k8s/k8s
+
+#파일시스템 마운트
+mkdir /k8s
+mount /dev/vg_k8s/k8s /k8s
+echo "/dev/vg_k8s/k8s /mnt/k8s xfs defaults 0 0" >> /etc/fstab
