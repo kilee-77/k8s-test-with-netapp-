@@ -1,3 +1,12 @@
+# / 용량 증설
+sudo yum install cloud-utils-growpart
+growpart /dev/sda 3
+lvextend -L +20g /dev/mapper/rl_linux1-root
+xfs_growfs /
+
+# nfs-utils 설치
+yum install -y nfs-utils
+
 #디스크 포멧
 fdisk /dev/sdb
 n > p > enter > enter > enter > p > t > 8e >p > w
