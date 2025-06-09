@@ -1,1 +1,29 @@
+#with k8s 1.31 version 
+#trident 설치 25.02
 
+#trident 다운로드 & 인스톨
+wget https://github.com/NetApp/trident/releases/download/v25.02.0/trident-installer-25.02.0.tar.gz
+tar -xf trident-installer-25.02.0.tar.gz
+cd trident-installer
+
+#trident CRD(사용자 정의 리소스) 생성
+kubectl create -f deploy/crds/trident.netapp.io_tridentorchestrators_crd_post1.16.yaml
+
+#네임스페이스 생성
+kubectl apply -f deploy/namespace.yaml
+
+# kustomize 설정 파일복사 (k8s 리소스구성을 배포할때 사용함)
+cp deploy/kustomization_post_1_25.yaml deploy/kustomization.yaml
+kubectl kustomize deploy/ > deploy/kustomization_post_1_25.yaml
+
+#생성된 kustomization 통해 리소스 배포
+kubectl create -f deploy/kustomization_post_1_25.yaml
+
+#네임스페이스 내 리소스 확인
+kubectl get all -n trident
+
+#trident Orchestrator 리소스 생성
+kubectl create -f deploy/crds/tridentorchestrator_cr.yaml 
+
+#정상 설치 및 버전확인
+./tridentctl -n trident version 
