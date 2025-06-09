@@ -2,6 +2,8 @@
 #trident 설치 25.02
 
 #trident 다운로드 & 인스톨
+mkdir /trident
+cd /trident
 wget https://github.com/NetApp/trident/releases/download/v25.02.0/trident-installer-25.02.0.tar.gz
 tar -xf trident-installer-25.02.0.tar.gz
 cd trident-installer
