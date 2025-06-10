@@ -1,5 +1,8 @@
-# backend info.
+# backend dir create
+mkdir /trident/yaml
 
+# backend info.
+cat > /trident/yaml/trident-backend.yaml <<EOF
 ---
 version: 1
 backendName: Trident-Backend
@@ -9,3 +12,11 @@ dataLIF: 192.168.0.131 #data lif
 svm: svm1 #svm name
 username: vsadmin # access ID
 password: 1234qwer!@ # ID Passwd
+EOF
+
+# trident backend 생성
+cd /trident/trident-installer/
+./tridentctl create backend -f /trident/yaml/trident-backend.yaml -n trident
+
+# trident check
+./tridentctl get backend -n trident
