@@ -1,4 +1,5 @@
-
+# storage class yaml
+cat > /trident/yaml/storage-class-basic.yaml <<EOF
 # storage-class-basic.yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -7,3 +8,10 @@ metadata:
 provisioner: csi.trident.netapp.io
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
+EOF
+
+# storage class 실행
+kubectl create -f storage-class-basic.yaml
+
+# storage class 확인
+kubectl get sc
