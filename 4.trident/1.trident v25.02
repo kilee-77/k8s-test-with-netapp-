@@ -1,5 +1,7 @@
 #with k8s 1.31 version 
 #trident 설치 25.02
+#트라이던트를 다운로드 받기위해 wget 설치
+yum install -y wget
 
 #trident 다운로드 & 인스톨
 mkdir /trident
