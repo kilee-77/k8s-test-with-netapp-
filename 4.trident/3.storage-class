@@ -11,7 +11,7 @@ volumeBindingMode: Immediate
 EOF
 
 # storage class 실행
-kubectl create -f storage-class-basic.yaml
+kubectl create -f /trident/yaml/storage-class-basic.yaml
 
 # storage class 확인
 kubectl get sc
