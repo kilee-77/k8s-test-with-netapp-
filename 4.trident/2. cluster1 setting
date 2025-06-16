@@ -11,7 +11,7 @@ net in create -vserver trident -lif mgmt1 -service-policy default-management -ho
 
 #nfs configuration
 nfs create -vserver trident
-export-policy rule create -policyname default -clientmatch 0.0.0.0/0 -rorule sys -rwrule sys -allow-suid true -allow-dev true -superuser sys
+export-policy rule create -vserver trident -policyname default -clientmatch 0.0.0.0/0 -rorule any -rwrule any -allow-suid true -superuser any -anon 0
 
 #vserver add-on aggregate
 vserver add-aggregates -vserver trident -aggregates n1_aggr1
